@@ -40,6 +40,11 @@
 		</div>
 
 		<script type="text/javascript">
+
+			const addListener = (node, handler) => {
+				node.addEventListener('click', () => handler(node));
+			};
+
 			const addListeners = (isLastNode = false) => {
 
 				const paths = document.getElementsByClassName('svg__path');
@@ -47,12 +52,12 @@
 				  if (isLastNode) {
 				    const lastNode = paths[paths.length - 1];
 
-				    lastNode.addEventListener('click', () => render(lastNode));
+				    addListener(lastNode, render);
 				    return;
 				  }
 
 				  for (let path of paths) {
-				      path.addEventListener('click', () => render(path));
+				     addListener(path, render);
 				  }
 			};
 
